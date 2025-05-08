@@ -1,18 +1,16 @@
+// vite.config.js
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
-// https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': {
-        target: 'https://jobify-production-72be.up.railway.app',
+      '/api/v1': {
+        target: process.env.VITE_BACKEND || 'http://localhost:8080',
         changeOrigin: true,
-        secure: true,
-        rewrite: (path) => path.replace(/^\/api/, '/api'), // This keeps the /api prefix
+        rewrite: (path) => path.replace(/^\/api\/v1/, '/api/v1'),
       },
     },
   },
 });
-

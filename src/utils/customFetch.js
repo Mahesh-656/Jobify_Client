@@ -1,7 +1,9 @@
+// src/utils/customFetch.js
 import axios from "axios";
-// import backendurl from './config'
+
 const customFetch = axios.create({
-    baseURL:  '/api/v1',  // Adding /api/v1 to the base URL
+    baseURL: import.meta.env.VITE_BACKEND + '/api/v1',
+    withCredentials: true,
 });
 
 export default customFetch;
